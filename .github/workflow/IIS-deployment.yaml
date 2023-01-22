@@ -1,0 +1,19 @@
+name: Depl;oying ASP.net to IIS on Azure Windows Server
+
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+
+jobs:
+  build-ASPdotnet-app:
+  name: Build ASPdotnet Application
+  runs-on: ubuntu-latest
+  steps:
+    - name: Install .dot
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0
