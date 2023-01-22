@@ -39,4 +39,14 @@ jobs:
       - name: Verify the file uploaded or not
         run: ls output
 
+  deployment-ASPdotnet-app:
+    name: Deployment ASPdotnet Application
+    runs-on: ubuntu-latest
+    needs: build-ASPdotnet-app
+    steps:
+      - name: Download the file from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+
 
