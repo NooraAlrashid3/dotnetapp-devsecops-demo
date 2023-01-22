@@ -27,4 +27,5 @@ jobs:
       - name: Publish ASPdotnet Application
         run: dotnet publish -o output
 
-     
+      - name: Verify the publish command
+        run: ls 
