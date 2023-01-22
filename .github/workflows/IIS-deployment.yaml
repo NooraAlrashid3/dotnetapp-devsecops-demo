@@ -37,6 +37,6 @@ jobs:
           path: ./output/*
 
     - name: Verify the file uploaded or not
-      run: ls ./output/*
+      run: ls output/*
 
 
