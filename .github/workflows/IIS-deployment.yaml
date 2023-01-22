@@ -11,7 +11,7 @@ on:
 jobs:
   build-ASPdotnet-app:
     name: Build ASPdotnet Application
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Install dotnet
         uses: actions/setup-dotnet@v3
