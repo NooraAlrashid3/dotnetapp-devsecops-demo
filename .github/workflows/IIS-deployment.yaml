@@ -29,3 +29,11 @@ jobs:
 
       - name: Verify the publish command
         run: ls 
+
+      - name: Upload the output folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: output/*
+
+
