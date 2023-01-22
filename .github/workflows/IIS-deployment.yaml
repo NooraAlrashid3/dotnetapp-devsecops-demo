@@ -36,4 +36,7 @@ jobs:
           name: my-artifact
           path: ./output/*
 
+    - name: Verify the file uploaded or not
+      run: ls ./output/*
+
 

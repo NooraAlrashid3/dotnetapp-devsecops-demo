@@ -1,7 +1,0 @@
-C:\Users\603-1\Desktop\dotnet project\dotnetapp-devsecops-demo\output\dotnetapp-devsecops-demo.exe
-C:\Users\603-1\Desktop\dotnet project\dotnetapp-devsecops-demo\output\appsettings.Development.json
-C:\Users\603-1\Desktop\dotnet project\dotnetapp-devsecops-demo\output\appsettings.json
-C:\Users\603-1\Desktop\dotnet project\dotnetapp-devsecops-demo\output\dotnetapp-devsecops-demo.dll
-C:\Users\603-1\Desktop\dotnet project\dotnetapp-devsecops-demo\output\dotnetapp-devsecops-demo.deps.json
-C:\Users\603-1\Desktop\dotnet project\dotnetapp-devsecops-demo\output\dotnetapp-devsecops-demo.runtimeconfig.json
-C:\Users\603-1\Desktop\dotnet project\dotnetapp-devsecops-demo\output\dotnetapp-devsecops-demo.pdb
