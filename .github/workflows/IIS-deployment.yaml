@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Check out the repo in the github
         uses: actions/checkout@v3.3.0
-        
+
       - name: Install dotnet
         uses: actions/setup-dotnet@v3
         with:
@@ -23,3 +23,8 @@ jobs:
 
       - name: Verify dotnet Version
         run: dotnet --version
+
+      - name: Publish ASPdotnet Application
+        run: dotnet publish -o output
+
+     
