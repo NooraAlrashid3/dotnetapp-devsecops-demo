@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: ./output/*
+          path: output/*
 
       - name: Verify the file uploaded or not
         run: ls output
@@ -48,6 +48,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: my-artifact
+          path: output
+
+      - run: ls -lrth output
           
       - name: Deploy the Build to IIS (SSH to window)
         uses: mdallasanta/ssh-scp-deploy@v1.2.0
