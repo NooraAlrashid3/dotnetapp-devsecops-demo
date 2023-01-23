@@ -1,81 +1,78 @@
-# name: Depl;oying ASP.net to IIS on Azure Windows Server
+name: Depl;oying ASP.net to IIS on Azure Windows Server
 
 
-# on:
-#   push:
-#     branches:
-#       - main
-#     workflow_dispatch:
+on:
+  # push:
+  #   branches:
+  #     - main
+    workflow_dispatch:
 
 
-# jobs:
-#   build-ASPdotnet-app:
-#     name: Build ASPdotnet Application
-#     runs-on: ubuntu-18.04
-#     steps:
-#       - name: Check out the repo in the github
-#         uses: actions/checkout@v3.3.0
+jobs:
+  build-ASPdotnet-app:
+    name: Build ASPdotnet Application
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Check out the repo in the github
+        uses: actions/checkout@v3.3.0
 
-#       - name: Install dotnet
-#         uses: actions/setup-dotnet@v3
-#         with:
-#           dotnet-version: 6.0
+      - name: Install dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0
 
-#       - name: Verify dotnet Version
-#         run: dotnet --version
+      - name: Verify dotnet Version
+        run: dotnet --version
 
-#       - name: Publish ASPdotnet Application
-#         run: dotnet publish -o output
+      - name: Publish ASPdotnet Application
+        run: dotnet publish -o output
 
-#       - name: Verify the publish command
-#         run: ls 
+      - name: Verify the publish command
+        run: ls 
 
-#       - name: Upload the output folder
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: my-artifact
-#           path: output/*
+      - name: Upload the output folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: output/*
 
-#       - name: Verify the file uploaded or not
-#         run: ls output
+      - name: Verify the file uploaded or not
+        run: ls output
 
-#   deployment-ASPdotnet-app:
-#     name: Deployment ASPdotnet Application
-#     runs-on: ubuntu-latest
-#     needs: build-ASPdotnet-app
-#     steps:
-#       - name: Download the file from artifact
-#         uses: actions/download-artifact@v3
-#         with:
-#           name: my-artifact
-#           path: output
+  deployment-ASPdotnet-app:
+    name: Deployment ASPdotnet Application
+    runs-on: ubuntu-latest
+    needs: build-ASPdotnet-app
+    steps:
+      - name: Download the file from artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: output
 
-#       - run: ls -lrth output
-          
-#       - name: Deploy the Build to IIS (SSH to window)
-#         uses: mdallasanta/ssh-scp-deploy@v1.2.0
-#         with:
-#           local: './output/*'
-#           remote: 'C:\inetpub\wwwroot\'
-#           host: ${{secrets.HOST}}                                                                       
-#           user: ${{secrets.USER}}                                     
-#           password: ${{secrets.PASSWORD}}  
-#           pre_upload: echo "This will be executed before the upload!"  
-#           post_upload: echo "This will be executed after the upload!"  
-#           ssh_options: -o StrictHostKeyChecking=no                     
-#           scp_options: -v  
+      - run: ls -lrth output
 
-#   # verify-ASPdotnet-app:
-#   #   name: Verify ASPdotnet app
-#   #   runs-on: ubuntu-latest
-#   #   needs: deployment-ASPdotnet-app
-#   #   steps:
-#   #     - name: Berify the health of the app
-#   #       run:
-    
-          
+      - name: Deploy the Build to IIS (SSH to window)
+        uses: mdallasanta/ssh-scp-deploy@v1.2.0
+        with:
+          local: './output/*'
+          remote: 'C:\inetpub\wwwroot\'
+          host: ${{secrets.HOST}}                                                                       
+          user: ${{secrets.USER}}                                     
+          password: ${{secrets.PASSWORD}}  
+          pre_upload: echo "This will be executed before the upload!"  
+          post_upload: echo "This will be executed after the upload!"  
+          ssh_options: -o StrictHostKeyChecking=no                     
+          scp_options: -v  
 
-      
+  # verify-ASPdotnet-app:
+  #   name: Verify ASPdotnet app
+  #   runs-on: ubuntu-latest
+  #   needs: deployment-ASPdotnet-app
+  #   steps:
+  #     - name: Berify the health of the app
+  #       run:
+
 
 
 
