@@ -64,6 +64,15 @@ jobs:
           post_upload: echo "This will be executed after the upload!"  
           ssh_options: -o StrictHostKeyChecking=no                     
           scp_options: -v  
+
+  # verify-ASPdotnet-app:
+  #   name: Verify ASPdotnet app
+  #   runs-on: ubuntu-latest
+  #   needs: deployment-ASPdotnet-app
+  #   steps:
+  #     - name: Berify the health of the app
+  #       run:
+    
           
 
       
