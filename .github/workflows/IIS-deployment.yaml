@@ -7,9 +7,24 @@ on:
   workflow_dispatch:
 
 jobs:
+
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   build-ASPdotnet-app:
     name: Build ASPdotnet Application
     runs-on: ubuntu-18.04
+    needs: sonarcloud
     steps:
       - name: Check out the repo in the github
         uses: actions/checkout@v3.3.0
@@ -37,24 +52,10 @@ jobs:
       - name: Verify the file uploaded or not
         run: ls output
 
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    needs: build-ASPdotnet-app
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
   deployment-ASPdotnet-app:
     name: Deployment ASPdotnet Application
     runs-on: ubuntu-latest
-    needs: sonarcloud
+    needs: build-ASPdotnet-app
     steps:
       - name: Download the file from artifact
         uses: actions/download-artifact@v3
