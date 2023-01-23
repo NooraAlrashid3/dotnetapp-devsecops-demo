@@ -1,11 +1,12 @@
 name: Depl;oying ASP.net to IIS on Azure Windows Server
 
-
 on:
-  # push:
-  #   branches:
-  #     - main
-    workflow_dispatch:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 
 jobs:
